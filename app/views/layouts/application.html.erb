@@ -4,12 +4,44 @@
     <title>Bookers4</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/ad383b9fb6.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header class=bg-dark>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand p-2 text-white" href="/">Bookers</a>
+          <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
+          <li>
+            <i class="fas fa-house-user text-white"><%= link_to "Home",root_path,class:"text-white" %></i>
+            </li>
+            <li>
+            <%= link_to "About",about_path,class:"text-white" %>
+            </li>
+            <li>
+            <%= link_to "Sign up", new_user_registration_path ,class:"text-white"%>
+            </li>
+            <li>
+            <%= link_to "logout", destroy_user_session_path, method: :delete,class:"text-white" %>
+            </li>
+          <% else %>
+          <li>
+            <%= link_to "Home",root_path %>
+            </li>
+          <% end %>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main>
     <%= yield %>
+    </main>
+    <footer class="pt-4 text-center">
+    <p>CopyRight Infratop.inc</p>
+    </footer>
   </body>
 </html>
